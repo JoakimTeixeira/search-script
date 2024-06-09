@@ -1,33 +1,61 @@
 #!/bin/bash
-date=$(date +'%m/%d/%Y')
-time=$(date +'%r')
-echo "Today is $date and $time"
-
-echo
-
-#Simple menu
-function menu {
-echo -e "Menu"
-echo -e "1. Search file"
-echo -e "2. Search folder"
-echo -e "0. Exit menu"
-echo -en "Enter option: "
-read -n 1 option
-echo
+# Function to display the current date and time
+function display_datetime {
+    date=$(date +'%m/%d/%Y')
+    time=$(date +'%r')
+    echo "Today is $date and $time"
+    echo
 }
 
-menu
-case $option in
-0) exit ;;
-1) echo -n "Enter a path: "
-read path
-echo -n "Enter a file name: "
-read filename
-eval find $path -iname "$filename*" -type f 2>&1 | grep -v "Permission denied";;
-2) echo -n "Enter a path: "
-read path
-echo -n "Enter a folder name: "
-read foldername
-eval find $path -iname "$foldername" -type d 2>&1 | grep -v "Permission denied";;
-esac
+# Function to display the menu
+function menu {
+    echo -e "\nMenu"
+    echo -e "1. Search file"
+    echo -e "2. Search folder"
+    echo -e "0. Exit menu"
+    echo
+    echo -en "Enter an option: "
+    read -n 1 option
+    echo
+}
 
+# Function to search for a file
+function search_file {
+    echo -n "Enter a path: "
+    read path
+    echo -n "Enter a file name: "
+    read filename
+    find "$path" -iname "${filename}*" -type f 2>&1 | grep -v "Permission denied"
+}
+
+# Function to search for a folder
+function search_folder {
+    echo -n "Enter a path: "
+    read path
+    echo -n "Enter a folder name: "
+    read foldername
+    find "$path" -iname "$foldername" -type d 2>&1 | grep -v "Permission denied"
+}
+
+# Main loop
+while true; do
+    display_datetime
+    menu
+    case $option in
+    0)
+        exit
+        ;;
+    1)
+        search_file
+        ;;
+    2)
+        search_folder
+        ;;
+    *)
+        echo "Invalid option."
+        ;;
+    esac
+    echo -e "\nPress any key to return to the menu..."
+    read -n 1
+    clear
+done
