@@ -26,7 +26,7 @@ function search_file {
     read path
     echo -n "Enter a file name: "
     read filename
-    find "$path" -iname "${filename}*" -type f 2>&1 | grep -v "Permission denied"
+    find "$path" -iname "${filename}*" -type f 2>&1 | grep --color=auto -v "Permission denied" | grep --color=auto -i "$filename"
 }
 
 # Function to search for a folder
@@ -35,7 +35,7 @@ function search_folder {
     read path
     echo -n "Enter a folder name: "
     read foldername
-    find "$path" -iname "$foldername" -type d 2>&1 | grep -v "Permission denied"
+    find "$path" -iname "$foldername" -type d 2>&1 | grep --color=auto -v "Permission denied" | grep --color=auto -i "$foldername"
 }
 
 # Function to search for text within files
@@ -44,7 +44,7 @@ function search_text {
     read path
     echo -n "Enter text to search for: "
     read searchtext
-    grep -r "$searchtext" "$path" 2>/dev/null | grep -v "Permission denied"
+    grep -r "$searchtext" "$path" 2>/dev/null | grep --color=auto -v "Permission denied" | grep --color=auto -i "$searchtext"
 }
 
 # Main loop
