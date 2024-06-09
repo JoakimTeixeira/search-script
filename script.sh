@@ -12,6 +12,7 @@ function menu {
     echo -e "\nMenu"
     echo -e "1. Search file"
     echo -e "2. Search folder"
+    echo -e "3. Search text withing files"
     echo -e "0. Exit menu"
     echo
     echo -en "Enter an option: "
@@ -37,6 +38,15 @@ function search_folder {
     find "$path" -iname "$foldername" -type d 2>&1 | grep -v "Permission denied"
 }
 
+# Function to search for text within files
+function search_text {
+    echo -n "Enter a path: "
+    read path
+    echo -n "Enter text to search for: "
+    read searchtext
+    grep -r "$searchtext" "$path" 2>/dev/null | grep -v "Permission denied"
+}
+
 # Main loop
 while true; do
     display_datetime
@@ -50,6 +60,9 @@ while true; do
         ;;
     2)
         search_folder
+        ;;
+    3)
+        search_text
         ;;
     *)
         echo "Invalid option."

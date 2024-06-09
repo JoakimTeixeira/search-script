@@ -2,7 +2,7 @@
 
 Shell script to search for files and folders
 
-![image](https://user-images.githubusercontent.com/12193814/99419167-9142fc80-28da-11eb-8117-fca1165c3f1f.png)
+![image](https://github.com/JoakimTeixeira/search-script/assets/12193814/d4f748c0-ab35-4b11-bcd7-a99255dfa588)
 
 ## Running the Project
 
