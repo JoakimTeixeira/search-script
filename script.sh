@@ -23,7 +23,7 @@ function menu {
 # Function to search for a file
 function search_file {
     echo -n "Enter a path: "
-    read path
+    read -e path
     echo -n "Enter a file name: "
     read filename
     find "$path" -iname "${filename}*" -type f 2>&1 | grep --color=auto -v "Permission denied" | grep --color=auto -i "$filename"
@@ -32,7 +32,7 @@ function search_file {
 # Function to search for a folder
 function search_folder {
     echo -n "Enter a path: "
-    read path
+    read -e path
     echo -n "Enter a folder name: "
     read foldername
     find "$path" -iname "$foldername" -type d 2>&1 | grep --color=auto -v "Permission denied" | grep --color=auto -i "$foldername"
@@ -41,7 +41,7 @@ function search_folder {
 # Function to search for text within files
 function search_text {
     echo -n "Enter a path: "
-    read path
+    read -e path
     echo -n "Enter text to search for: "
     read searchtext
     grep -r "$searchtext" "$path" 2>/dev/null | grep --color=auto -v "Permission denied" | grep --color=auto -i "$searchtext"
