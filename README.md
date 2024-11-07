@@ -6,7 +6,7 @@ Shell script to search for files and folders
 
 ## Running the Project
 
-To get started, fork the repository and then run the following commands:
+To get started, fork the repository, clone it, and then run the following commands:
 
     chmod 755 script.sh
     bash ./script.sh
